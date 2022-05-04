@@ -4,5 +4,5 @@ namespace MobileMoney;
 
 interface IReceiver
 {
-	public function receiveMoney($amount, $from);
+	public function receiveMoney(Money $amount, $agent);
 }
