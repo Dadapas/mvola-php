@@ -7,6 +7,8 @@
             "MobileMoney\\": "src/"
         }
     },
+    "minimum-stability": "dev",
+    "license": "gplv3",
     "authors": [
         {
             "name": "TOVOHERY",
