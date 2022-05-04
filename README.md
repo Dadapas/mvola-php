@@ -2,7 +2,7 @@
 PHP class wrap up Madagascar mobile money request as mvola.
 
 ## For installation
-`composer require dadapas/mobile-money`
+`composer require tovohery/mobile-money`
 
 
 ```php
@@ -22,7 +22,7 @@ try {
 
 	// ...
 } catch (MobileMoney\Exception $e) {
-	
+
 	echo $e->getMessage();
 }
 
@@ -33,7 +33,17 @@ $credentials = [
 	'apiKey'	=> '...'
 ];
 ```
+An example of using `OAuth2` authentification
+```php
+$credentials = [
+	'cus_username'	=> 'rakotofra',
+	'cus_secret'	=> 'fez65fezfS'
+];
+```
 
-# Examples
 
-There is more way of building mobile money for
+# Tests
+All test is in file `tests/` 
+
+# LICENCE
+MIT Licence
