@@ -1,0 +1,19 @@
+{
+    "name": "tovohery/mobile-money",
+    "type": "library",
+    "version": "0.0.1",
+    "autoload": {
+        "psr-4": {
+            "MobileMoney\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "TOVOHERY",
+            "email": "tovoherypascal@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.6"
+    }
+}
