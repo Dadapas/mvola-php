@@ -8,7 +8,7 @@
         }
     },
     "minimum-stability": "dev",
-    "license": "gplv3",
+    "license": "AGPL-3.0-only",
     "authors": [
         {
             "name": "TOVOHERY",
