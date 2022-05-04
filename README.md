@@ -2,7 +2,9 @@
 PHP class wrap up Madagascar mobile money request as mvola.
 
 ## For installation
-`composer require tovohery/mobile-money`
+```
+composer require tovohery/mobile-money
+```
 
 
 ```php
@@ -11,8 +13,8 @@ require_once __DIR__ . "/vendor/autoload.php";
 use MobileMoney\Telma as Mvola;
 
 $credentials = [
-	'username'	=> 'myusername',
-	'password'  => 'mypass'
+	'cus_username'	=> 'myusername',
+	'cus_secret'    => 'mypass'
 ];
 
 $cache = '/path/to/cache';
@@ -41,9 +43,8 @@ $credentials = [
 ];
 ```
 
-
-# Tests
+## Tests
 All test is in file `tests/` 
 
-# LICENCE
+## LICENCE
 MIT Licence
