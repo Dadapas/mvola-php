@@ -18,7 +18,14 @@ class Money
 	/**
 	 * @property $supportedDevise
 	 */ 
-	protected static $supportedDevise = ['MGA', 'USD', 'EUR', 'JPA', 'CAD', ''];
+	protected static $supportedDevise = [
+		'MGA' => 'Malagasy Ariary',
+		'USD' => 'Dollar american',
+		'EUR' => 'European Money',
+		'JPA' => 'Japan money',
+		'CAD' => 'Dollar canadian',
+		'GER' => 'Germanian'
+	];
 
 	/**
 	 * @param string $devise      Money devise like USD, EUR, MGA, ...
@@ -27,17 +34,25 @@ class Money
 	public function __construct($devise, $amount)
 	{
 		if ( ! self::isSupportedDevise($devise) )
-			throw new Exception("Devise not supported");
+			throw new Exception("Unsupported devise.");
 
 		$this->devise = $devise;
 		$this->amount = $amount;
 	}
 
+	/**
+	 * Get the devise
+	 * @return float    Amount money
+	*/
 	public function getDevise()
 	{
 		return $this->devise;
 	}
 
+	/**
+	 * Get the amount 
+	 * @return float    Amount money
+	*/
 	public function getAmount()
 	{
 		return $this->amount;
@@ -45,6 +60,6 @@ class Money
 
 	public static function isSupportedDevise($devise)
 	{
-		return array_search($devise, self::$supportedDevise);
+		return array_key_exists($devise, self::$supportedDevise);
 	}
 }
