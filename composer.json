@@ -4,7 +4,8 @@
     "version": "0.0.1",
     "autoload": {
         "psr-4": {
-            "MobileMoney\\": "src/"
+            "MobileMoney\\": "src/",
+            "MobileMoney\\Tests\\": "tests"
         }
     },
     "minimum-stability": "dev",
@@ -20,6 +21,7 @@
         "guzzlehttp/guzzle": "^6.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^8.5"
+        "phpunit/phpunit": "^8.5",
+        "psr/log": "^1.1"
     }
 }
