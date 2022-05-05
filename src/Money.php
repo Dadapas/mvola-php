@@ -24,7 +24,6 @@ class Money
 		'EUR' => 'European Money',
 		'JPA' => 'Japan money',
 		'CAD' => 'Dollar canadian',
-		'GER' => 'Germanian'
 	];
 
 	/**
