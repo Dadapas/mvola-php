@@ -1,0 +1,45 @@
+{
+    "name": "dadapas/mobile-money",
+    "type": "library",
+    "version": "1.0.1",
+    "autoload": {
+        "psr-4": {
+            "MobileMoney\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MobileMoney\\Tests\\": "tests/"
+        }
+    },
+    "keywords": [
+        "mvola", 
+        "php-sdk",
+        "mobile-money",
+        "library",
+        "madagascar"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TOVOHERY",
+            "email": "tovoherypascal@gmail.com"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/dadapas/mobile-money/issues"
+    },
+    "require": {
+        "php": ">=7.1 || >=8.0",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5",
+        "psr/log": "^1.1"
+    },
+    "suggest": {
+        "psr/log": "Required for using the Log middleware"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+}
