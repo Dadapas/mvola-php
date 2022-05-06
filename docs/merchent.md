@@ -38,8 +38,9 @@ print_r( $transaction );
 To get the status by correlation ID
 
 ```php
+// xx2x2f8z-s5sb-qo1j-ng50-m1o7q6hu8hnf
+$correlationID = "correlation_id";
 
-$correlationID = "correlationID";
-$statusDetails = $mvola->status($statId);
+$statusDetails = $mvola->status($correlationID);
 print_r($statusDetails);
 ```

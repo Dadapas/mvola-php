@@ -22,7 +22,7 @@ $ php composer.phar update
 
 ## Testing
 
-The PHPUnit version to be used is the one installed as a dev- dependency via composer:
+The PHPUnit version to be used is the one installed as a dev dependency via composer:
 
 ```sh
 $ ./vendor/bin/phpunit --verbose tests
