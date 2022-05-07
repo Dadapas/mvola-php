@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace MobileMoney\Tests\Cache;
+namespace MVolaphp\Tests\Cache;
 
 use PHPUnit\Framework\TestCase;
 
-use MobileMoney\Utils\Helpers;
+use MVolaphp\Utils\Helpers;
 
 final class HelpersTest extends TestCase
 {

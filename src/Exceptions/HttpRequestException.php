@@ -1,6 +1,6 @@
 <?php
-namespace MobileMoney\Exceptions;
+namespace MVolaphp\Exceptions;
 
-use MobileMoney\Exception;
+use MVolaphp\Exception;
 
 class HttpRequestException extends \RuntimeException {}

@@ -1,8 +1,8 @@
 <?php
 
-namespace MobileMoney\Objects;
+namespace MVolaphp\Objects;
 
-use MobileMoney\Utils\Helpers;
+use MVolaphp\Utils\Helpers;
 
 class Phone extends Objects implements KeyPairInterface
 {

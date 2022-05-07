@@ -1,9 +1,9 @@
 <?php
 
-namespace MobileMoney\Cache;
+namespace MVolaphp\Cache;
 
-use MobileMoney\Exception;
-use MobileMoney\Utils\Helpers;
+use MVolaphp\Exception;
+use MVolaphp\Utils\Helpers;
 
 /**
  * Creation de fichier cache
@@ -32,7 +32,7 @@ class Cache
 
 	public function genFileName()
 	{
-		return "MobileMoney.sdk.php";
+		return "MVolaphp.sdk.php";
 	}
 
 	public function getFullName()

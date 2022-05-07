@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace MobileMoney\Tests\Cache;
+namespace MVolaphp\Tests\Cache;
 
 use PHPUnit\Framework\TestCase;
 
-use MobileMoney\Cache\Cache;
+use MVolaphp\Cache\Cache;
 
 final class CacheTest extends TestCase
 {

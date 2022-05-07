@@ -1,8 +1,8 @@
 <?php
 
-namespace MobileMoney\Objects;
+namespace MVolaphp\Objects;
 
-use MobileMoney\Exceptions\InvalidArgumentException;
+use MVolaphp\Exceptions\InvalidArgumentException;
 
 class Objects
 {

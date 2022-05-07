@@ -1,15 +1,15 @@
 {
-    "name": "dadapas/mobile-money",
+    "name": "dadapas/mvola-php",
     "type": "library",
     "version": "1.0.1",
     "autoload": {
         "psr-4": {
-            "MobileMoney\\": "src/"
+            "MVolaphp\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "MobileMoney\\Tests\\": "tests/"
+            "MVolaphp\\Tests\\": "tests/"
         }
     },
     "keywords": [
@@ -27,7 +27,7 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/dadapas/mobile-money/issues"
+        "issues": "https://github.com/dadapas/mvola-php/issues"
     },
     "require": {
         "php": ">=7.1 || >=8.0",
@@ -41,5 +41,5 @@
         "psr/log": "Required for using the Log middleware"
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
+    "prefer-stable": true
 }

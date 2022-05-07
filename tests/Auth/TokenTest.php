@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace MobileMoney\Tests\Auth;
+namespace MVolaphp\Tests\Auth;
 
 use PHPUnit\Framework\TestCase;
-use MobileMoney\Token;
-use MobileMoney\Objects\Token as TokeObject;
-use MobileMoney\Cache\Cache;
+use MVolaphp\Token;
+use MVolaphp\Objects\Token as TokeObject;
+use MVolaphp\Cache\Cache;
 
 final class TokenTest extends TestCase
 {

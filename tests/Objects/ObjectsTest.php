@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace MobileMoney\Tests\Cache;
+namespace MVolaphp\Tests\Cache;
 
 use PHPUnit\Framework\TestCase;
-use MobileMoney\Utils\Helpers;
-use MobileMoney\Objects\{Phone, Token, PayIn, KeyValue};
-use MobileMoney\Money;
+use MVolaphp\Utils\Helpers;
+use MVolaphp\Objects\{Phone, Token, PayIn, KeyValue};
+use MVolaphp\Money;
 
 final class ObjectsTest extends TestCase
 {
@@ -57,14 +57,21 @@ final class ObjectsTest extends TestCase
 
         $payIn->debitParty = $debit;
 
-        $payIn->creditParty = new KeyValue();
-        $payIn->requestDate = date('c');
-        $payIn->requestDate = "2021-02-24T03:28:00.567Z";
+        $credit = new KeyValue();
+        $credit->add('msisdn', "+2613546165");
+        
+        $payIn->creditParty = $credit;
+        //$payIn->requestDate = date('c');
+        //$payIn->requestDate = "2021-02-24T03:28:00.567Z";
         //$payIn->
 
         $payIn->amount = $amount;
 
-        $payIn->checkPropertyValue();
+        $payIn->checkPropertyValues();
+
+        $this->assertNotRegExp('/-|,|_|\./', $payIn->requestingOrganisationTransactionReference, "No extra char");
+
+        $this->assertSame(50, strlen($payIn->requestingOrganisationTransactionReference), "Ne depasse pas de 50");
 
         $this->assertTrue(true);
     }

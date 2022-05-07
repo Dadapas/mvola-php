@@ -1,6 +1,6 @@
 <?php
 
-namespace MobileMoney\Utils;
+namespace MVolaphp\Utils;
 
 class Helpers
 {

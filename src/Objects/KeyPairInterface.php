@@ -1,6 +1,6 @@
 <?php
 
-namespace MobileMoney\Objects;
+namespace MVolaphp\Objects;
 
 interface KeyPairInterface
 {

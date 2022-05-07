@@ -1,6 +1,6 @@
 <?php
 
-namespace MobileMoney;
+namespace MVolaphp;
 
 class Money
 {

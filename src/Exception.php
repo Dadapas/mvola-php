@@ -1,5 +1,5 @@
 <?php
 
-namespace MobileMoney;
+namespace MVolaphp;
 
 class Exception extends \Exception {}

@@ -14,14 +14,14 @@ PHP class wrap up Madagascar mobile money request as mvola.
 The suggested installation method is via [composer](https://getcomposer.org/):
 
 ```sh
-composer require dadapas/mobile-money
+composer require dadapas/mvola-php
 ```
 
 To get started
 
 ```php
 require_once __DIR__ . "/vendor/autoload.php";
-use MobileMoney\Telma as MVola;
+use MVolaphp\Telma as MVola;
 
 define('CREDENTIALS',[
 	// Customer id
@@ -44,7 +44,7 @@ try {
 	$mvola = new MVola(CREDENTIALS, $cache);
 
 	// ...
-} catch (MobileMoney\Exception | MobileMoney\Exceptions\HttpRequestException $e) {
+} catch (MVolaphp\Exception | MVolaphp\Exceptions\HttpRequestException $e) {
 
 	echo $e->getMessage();
 }
@@ -53,8 +53,8 @@ try {
 
 Sending money to merchent like
 ```php
-use MobileMoney\Money;
-use MobileMoney\Objects\{Phone, PayIn, KeyValue};
+use MVolaphp\Money;
+use MVolaphp\Objects\{Phone, PayIn, KeyValue};
 ...
 
 $payDetails = new PayIn();

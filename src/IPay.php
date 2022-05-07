@@ -1,8 +1,8 @@
 <?php
 
-namespace MobileMoney;
+namespace MVolaphp;
 
-use MobileMoney\Objects\PayIn;
+use MVolaphp\Objects\PayIn;
 
 interface IPay
 {
