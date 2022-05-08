@@ -45,7 +45,9 @@ try {
 	// ...
 } catch (MVolaphp\Exception $e) {
 
-	echo $e->getMessage();
+	echo $e->getMessage().PHP_EOL;
+
+	var_dump($e->getData());
 }
 
 ```
