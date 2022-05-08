@@ -2,7 +2,7 @@
 
  * Any contribution must provide tests for additional introduced conditions
  * Any un-confirmed issue needs a failing test case before being accepted
- * Pull requests must be sent from a new `dev` branch, not from `main`.
+ * Pull requests must be sent from a new `dev/hotfix` branch, not from `main`.
 
 ## Installation
 
