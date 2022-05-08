@@ -2,6 +2,7 @@
 
 namespace MVolaphp\Objects;
 
+use MVolaphp\Exceptions\InvalidArgumentException;
 
 class KeyValue extends Objects
 {
@@ -21,6 +22,9 @@ class KeyValue extends Objects
 
 	public function add($key, $value)
 	{
+		if (isset($this->values[$key]))
+			throw new InvalidArgumentException("$key already exist.");
+		
 		$this->values[$key] = $value;
 	}
 
@@ -32,11 +36,6 @@ class KeyValue extends Objects
 
 		}
 		return true;
-	}
-
-	public function __set($name, $value)
-	{
-		$this->add($name, $value);
 	}
 
 	public function __toString()

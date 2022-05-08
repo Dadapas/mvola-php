@@ -61,9 +61,6 @@ final class ObjectsTest extends TestCase
         $credit->add('msisdn', "+2613546165");
         
         $payIn->creditParty = $credit;
-        //$payIn->requestDate = date('c');
-        //$payIn->requestDate = "2021-02-24T03:28:00.567Z";
-        //$payIn->
 
         $payIn->amount = $amount;
 
@@ -71,7 +68,7 @@ final class ObjectsTest extends TestCase
 
         $this->assertNotRegExp('/-|,|_|\./', $payIn->requestingOrganisationTransactionReference, "No extra char");
 
-        $this->assertSame(50, strlen($payIn->requestingOrganisationTransactionReference), "Ne depasse pas de 50");
+        $this->assertLessThanOrEqual(50, strlen($payIn->requestingOrganisationTransactionReference), "Ne depasse pas de 50");
 
         $this->assertTrue(true);
     }

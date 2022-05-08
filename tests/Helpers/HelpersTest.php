@@ -33,7 +33,6 @@ final class HelpersTest extends TestCase
     	$this->assertStringContainsString("-", Helpers::correlationID(), "Separated by -");
 
     	$this->assertNotSame(Helpers::correlationID(), Helpers::correlationID(), "Always generated new one.");
-
     }
 
     public function testTransactionRef()
@@ -47,7 +46,51 @@ final class HelpersTest extends TestCase
     {
         $uuid = Helpers::uuid();
 
+        preg_match_all('/\-/', $uuid, $matches);
+
+        $this->assertSame(4, count($matches[0]), "Must have 4 -(s).");
         // The uuid is less than 40
         $this->assertLessThanOrEqual(40, strlen($uuid), "Should less than 40");
+    }
+
+    public function testUrl()
+    {
+        $rightUrl = [
+            "http://www.foufos.gr",
+            "https://www.foufos.gr",
+            "http://foufos.gr",
+            "http://www.foufos.gr/kino",
+            "http://werer.gr",
+            "www.foufos.gr",
+            "www.mp3.com",
+            "www.t.co",
+            "http://t.co",
+            "http://www.t.co",
+            "https://www.t.co",
+            "www.aa.com",
+            "http://aa.com",
+            "http://www.aa.com",
+            "https://www.aa.com",
+        ];
+
+        $wrongUrl = [
+            "www.foufos",
+            "www.foufos-.gr",
+            "www.-foufos.gr",
+            "foufos.gr",
+            "http://www.foufos",
+            "http://foufos",
+            "www.mp3#.com",
+        ];
+
+        foreach($rightUrl as $url)
+        {
+            $this->assertTrue(Helpers::isUrl($url), "right url");
+        }
+
+        foreach($wrongUrl as $url)
+        {
+            $this->assertFalse(Helpers::isUrl($url), "wrong url");
+        }
     }
 }

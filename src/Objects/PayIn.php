@@ -5,7 +5,7 @@ namespace MVolaphp\Objects;
 use MVolaphp\Utils\Helpers;
 use MVolaphp\Money;
 use MVolaphp\Exceptions\InvalidArgumentException;
-use MVolaphp\Objects\{Phone, KeyValue };
+use MVolaphp\Objects\{Phone, KeyValue, DateTime};
 
 /**
  * PayIn Details payement
@@ -33,9 +33,8 @@ class PayIn extends Objects
 	{
 		$this->requestingOrganisationTransactionReference = Helpers::transRef();
 		$this->originalTransactionReference = Helpers::ref();
-		$dt = new \DateTime();
-		//$dt->setTimeZone(new \DateTimeZone('UTC'));
-		$this->requestDate = $dt->format("Y-m-d\TH:i:s").".000Z";
+		
+		$this->requestDate = (new DateTime)->currentWithMill();
 	}
 
 	public function __set($name, $value)

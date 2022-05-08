@@ -72,30 +72,25 @@ class Telma implements IPay
 
 		if ( ! ( array_key_exists('client_id', $options) &&
 				 array_key_exists('client_secret', $options) &&
-				 array_key_exists('merchant_number', $options)
+				 array_key_exists('merchant_number', $options) &&
+				 array_key_exists('partner_name', $options)
 			   )
 		)
-			throw new InvalidArgumentException('Customer client_id, client_secret and merchant_number are required.');
+			throw new InvalidArgumentException('Customer client_id, client_secret, merchant_number and partner_name are required.');
 
 		$this->client_id = $options['client_id'];
 
 		$this->client_secret = $options['client_secret'];
 		
 		$this->merchant_number = new Phone($options['merchant_number']);
-
-		if (array_key_exists('partner_name', $options))
-		{
-			$this->partner_name = $options['partner_name'];
-		}
+		
+		$this->partner_name = $options['partner_name'];
 
 		if (
 			isset($options['production']) &&
 			$options['production']
 		)
 			$this->env = 'production';
-
-		// TODO: get the token and expires
-		// TODO: pass to the cache param
 		
 		$this->initRequest();
 
@@ -140,17 +135,31 @@ class Telma implements IPay
 	protected function run()
 	{
 
-		$output = \curl_exec($this->curl);
+		$result = \curl_exec($this->curl);
 
 		if (\curl_error($this->curl))
-			throw new HttpRequestException(\curl_error($this->curl));
+		{
+			$data = [
+				'error'	=> 'curl error',
+				'error_description'	=> \curl_error($this->curl)
+			];
+			throw new HttpRequestException('request error', $data);
+		}
+
+		$code = \curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
 
 		\curl_close($this->curl);
 
-		if ($output !=  null)
-			return \json_decode($output, true);
+		$dataResponse = \json_decode($result, true);
 
-		return [];
+		if ($code > 200)
+		{
+			throw new HttpRequestException("server request error.", $dataResponse);
+		}
+
+		if ($dataResponse == null) return [];
+
+		return $dataResponse;
 	}
 
 	protected function setOption($name, $value)
@@ -160,6 +169,15 @@ class Telma implements IPay
 
 	public function setCallbackUrl($url)
 	{
+		if ( ! Helpers::isUrl() )
+		{
+			$data = [
+				'error'	=> 'bad url',
+				"error_description"	=> "$url is not valid url."
+			];
+			throw new InvalidArgumentException("invalid url.", $data);
+		}
+
 		$this->headers['X-Callback-URL'] = $url;
 	}
 
@@ -253,8 +271,8 @@ class Telma implements IPay
 
 		$lavabe = $payment->requestingOrganisationTransactionReference;
 
-		if ($payment->metadata->partnerName)
-			$this->headers['partnerName'] = $payment->metadata->partnerName;
+		/*if ($payment->metadata->partnerName)
+			$this->headers['partnerName'] = $payment->metadata->partnerName;*/
 
 
 		$symbol = Money::symbol($amount->getDevise());

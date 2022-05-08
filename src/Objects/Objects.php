@@ -12,11 +12,6 @@ class Objects
 			$this->invalidArgument("'$name' is innexistant.");
 	}
 
-	protected function mustInstanceOf($class, $prop, $value, $name)
-	{
-		
-	}
-
 	protected function invalidArgument($message)
 	{
 		throw new InvalidArgumentException($message);

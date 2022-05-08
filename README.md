@@ -1,13 +1,12 @@
-# MOBILE MONEY
+## MVOLA PHP
+
 PHP class wrap up Madagascar mobile money request as mvola.
 
-[![Build Status](https://travis-ci.org/dadapas/mobile-money.svg?branch=main)](https://travis-ci.org/dadapas/mobile-money)
-[![Code Coverage](https://codecov.io/gh/dadapas/mobile-money/branch/master/graph/badge.svg)](https://codecov.io/gh/dadapas/mobile-money/branch/master)
-[![Dependency Status](https://www.versioneye.com/package/php--dadapas--mobile-money/badge.svg)](https://www.versioneye.com/package/php--dadapas--mobile-money)
+This package facilitate these features for you:
 
-[![Latest Stable Version](https://poser.pugx.org/dadapas/mobile-money/v/stable.png)](https://packagist.org/packages/dadapas/mobile-money)
-[![Latest Unstable Version](https://poser.pugx.org/dadapas/mobile-money/v/unstable.png)](https://packagist.org/packages/dadapas/mobile-money)
-
+ * Handle authentification token and expires token
+ * Generate automaticly correlation ID and reference for payement
+ * Request handler 
 
 ## Getting started
 
@@ -44,7 +43,7 @@ try {
 	$mvola = new MVola(CREDENTIALS, $cache);
 
 	// ...
-} catch (MVolaphp\Exception | MVolaphp\Exceptions\HttpRequestException $e) {
+} catch (MVolaphp\Exception $e) {
 
 	echo $e->getMessage();
 }
@@ -101,7 +100,7 @@ This repository is support to all php project, **Symfony**, **Laravel**, **Codei
 ## Documentation
 
 To read the documentation is in
-* [Getting Started](docs/getting-started)
+* [Getting Started](docs/getting-started.md)
 * [Merchant](docs/merchent.md)
 
 ## Contributing

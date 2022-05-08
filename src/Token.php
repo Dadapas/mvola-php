@@ -76,9 +76,13 @@ class Token
 
 		$result = \curl_exec($this->curl);
 
-		if ( \curl_errno($this->curl)){
-
-			throw new HttpRequestException(\curl_error($this->curl));
+		if ( \curl_errno($this->curl))
+		{
+			$data = [
+				'error' => 'unable to reach domain.',
+				'error_description'	=> \curl_error($this->curl)
+			];
+			throw new HttpRequestException("unable to reach domain.", $data);
 		}
 
 		$code = \curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
@@ -89,7 +93,7 @@ class Token
 
 		if ($code > 200)
 		{
-			throw new HttpRequestException("({$tokenResponse['error']}): {$tokenResponse['error_description']}.");
+			throw new HttpRequestException("request server error.", $tokenResponse);
 		}
 
 		if ($tokenResponse == null) return [];
@@ -149,17 +153,17 @@ class Token
 
 	}
 
-	public function acessForTest()
+	protected function acessForTest()
   	{
   		return [
 			"access_token" => \MVolaphp\Utils\Helpers::correlationID(),
 			"scope"		   => "EXT_INT_MVOLA_SCOPE",
 			"token_type"   => "Bearer",
-			"expires_in"   => 3600
+			"expires_in"   => 10 // Alive for 10 seconds
 		];
   	}
 
-	public function cachedTest(TokenObject $tokenObject = null)
+	protected function cachedTest(TokenObject $tokenObject = null)
   	{
   		if ($tokenObject == null)
   			$tokenObject = new TokenObject();

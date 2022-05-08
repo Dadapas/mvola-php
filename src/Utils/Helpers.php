@@ -73,7 +73,7 @@ class Helpers
 	public static function transRef()
 	{
 		$str = "";
-		for($i = 0; $i < 50; $i++)
+		for($i = 0; $i < 25; $i++)
 		{
 			$str .= self::$alphabet[self::alpha()];
 		}
@@ -83,5 +83,10 @@ class Helpers
 	public static function removeExtraChar($str)
 	{
 		return \preg_replace('/,|-|_|\./', '', $str);
+	}
+
+	public static function isUrl($url)
+	{
+		return 1 === \preg_match('/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/', $url);
 	}
 }
