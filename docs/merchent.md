@@ -2,7 +2,7 @@
 
  * [To get started](getting-started.md)
 
-For production set `isProduction` options to true
+For production set `production` options to true or
 ```php
 // Set to production for real money
 $mvola->setProduction();
