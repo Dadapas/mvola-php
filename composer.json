@@ -40,6 +40,6 @@
     "suggest": {
         "psr/log": "Required for using the Log middleware"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }
