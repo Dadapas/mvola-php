@@ -3,4 +3,4 @@ namespace MVolaphp\Exceptions;
 
 use MVolaphp\Exception;
 
-class HttpRequestException extends \RuntimeException {}
+class HttpRequestException extends Exception {}
