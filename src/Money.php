@@ -1,6 +1,6 @@
 <?php
 
-namespace MobileMoney;
+namespace MVolaphp;
 
 class Money
 {
@@ -19,12 +19,10 @@ class Money
 	 * @property $supportedDevise
 	 */ 
 	protected static $supportedDevise = [
-		'MGA' => 'Malagasy Ariary',
-		'USD' => 'Dollar american',
-		'EUR' => 'European Money',
-		'JPA' => 'Japan money',
-		'CAD' => 'Dollar canadian',
-		'GER' => 'Germanian'
+		'MGA' => 'Ar', // Malagasy Ariary
+
+		/*'USD' => '$',  //'Dollar american'
+		'EUR' => '€'   // European*/
 	];
 
 	/**
@@ -33,8 +31,7 @@ class Money
 	*/
 	public function __construct($devise, $amount)
 	{
-		if ( ! self::isSupportedDevise($devise) )
-			throw new Exception("Unsupported devise.");
+		self::checkDevise($devise);
 
 		$this->devise = $devise;
 		$this->amount = $amount;
@@ -61,5 +58,18 @@ class Money
 	public static function isSupportedDevise($devise)
 	{
 		return array_key_exists($devise, self::$supportedDevise);
+	}
+
+	public static function checkDevise($devise)
+	{
+		if ( ! self::isSupportedDevise($devise) )
+			throw new Exception("Unsupported devise.");
+	}
+
+	public static function symbol($devise)
+	{
+		self::checkDevise($devise);
+
+		return self::$supportedDevise[$devise];
 	}
 }

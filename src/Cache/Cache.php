@@ -1,9 +1,9 @@
 <?php
 
-namespace MobileMoney\Cache;
+namespace MVolaphp\Cache;
 
-use MobileMoney\Exception;
-use MobileMoney\Utils\Helpers;
+use MVolaphp\Exception;
+use MVolaphp\Utils\Helpers;
 
 /**
  * Creation de fichier cache
@@ -11,54 +11,64 @@ use MobileMoney\Utils\Helpers;
 */
 class Cache
 {
-	protected $folder;
+	protected static $folder;
+
+	protected $exit;
 
 
-	public function __construct(\DateTime $expire, $path)
+	public function __construct()
 	{
-		$this->folder = $path;
-		$this->expire = $expire;
+		$this->exit = '<?php exit; ?>';
+
+		if (self::$folder == null)
+			throw new Exception("Invalid folder.");
+
+	}
+
+	public static function setPath($path)
+	{
+		self::$folder = $path;
 	}
 
 	public function genFileName()
 	{
-		$y = date('Y');
-		$m = date('m');
-		$d = date('d');
-
-		return "Cached-{$y}-{$m}-{$d}.php";
+		return "MVolaphp.sdk.php";
 	}
 
-	public function expire()
+	public function getFullName()
 	{
-		return (new DateTime) > $this->expire;
+		return self::$folder . "/". $this->genFileName();
 	}
 
-	public function isWritable()
+	public function isFileExist()
 	{
-		$filename = $this->folder . "/". $this->genFileName();
-		var_dump($filename);die;
-		return is_writable($filename);
+		$filename = $this->getFullName();
+		return file_exists($filename);
 	}
 
 	public function clear()
 	{
-		/*rmdir()*/
+		unlink($this->getFullName());
 	}
 
 
 	public function write($content)
 	{
 
-		$file = $this->folder . "/". $this->genFileName();
+		$file = $this->getFullName();
 
-		/*if ( ! Helpers::writeFile($file, $content))
-		{
-			throw new Exception('File is not writtable.');
-		}*/
-
-		file_put_contents($file, '<?php exit; ?>'.$content);
+		file_put_contents($file, $this->exit . $content);
 	}
 
-	//public function read()
+	public function read()
+	{
+		$file = $this->getFullName();
+
+		if ( ! file_exists($file))
+			$this->write("");
+		
+		$contents = \file_get_contents($file);
+
+		return \str_replace($this->exit, '', $contents);
+	}
 }
