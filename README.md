@@ -24,7 +24,7 @@ use MVolaphp\Telma as MVola;
 
 define('CREDENTIALS',[
 	// Customer id
-	'client_id'			=> '<customer_id>',
+	'client_id'		=> '<customer_id>',
 	// Customer secret
 	'client_secret'		=> '<customer_secret>',
 	// The merchant number
