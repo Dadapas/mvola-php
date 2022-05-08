@@ -3,7 +3,7 @@
 namespace MVolaphp\Tests\Auth;
 
 use PHPUnit\Framework\TestCase;
-use MVolaphp\Token;
+use MVolaphp\{Token, Telma as MVola};
 use MVolaphp\Objects\Token as TokeObject;
 use MVolaphp\Cache\Cache;
 
@@ -11,20 +11,26 @@ final class TokenTest extends TestCase
 {
 	public function testValidity()
 	{
-		/*Cache::setPath("/path/to/cache");
+		$cacheDir = dirname(__DIR__, 2)."/cache";
+		Cache::setPath($cacheDir);
 
 		$customerId = "customer_id";
 		$customerSecret = "customer_secret";
 		$tokenUrl = "https://";
+		
+		try {
+			$token = new Token($customerId, $customerSecret, $tokenUrl);
+		}
+		catch (HttpRequestException $e) {
 
-		$token = new Token($customerId, $customerSecret, $tokenUrl);
+		}
 
-		$access = $token->get();
-		sleep(5);
-		$another = $token->get();
+		$access = $token->getTest();
+		
+		$another = $token->getTest();
 
-		$this->assertSame( $access , $another , "token not expired yet");*/
+		$this->assertSame( $access , $another , "token not expired yet");
 
-		$this->assertTrue(true);
+		//$this->assertTrue(true);
 	}
 }
