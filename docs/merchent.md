@@ -1,5 +1,7 @@
 ## Merchent
 
+ * [To get started](getting-started.md)
+
 For production set `isProduction` options to true
 ```php
 // Set to production for real money
