@@ -1,7 +1,7 @@
 {
     "name": "dadapas/mvola-php",
     "type": "library",
-    "version": "1.0.1",
+    "version": "1.1",
     "autoload": {
         "psr-4": {
             "MVolaphp\\": "src/"
