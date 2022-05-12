@@ -13,7 +13,7 @@ namespace Dadapas\MobileMoney;
  */
 
 use Dadapas\MobileMoney\Cache\Cache;
-use Dadapas\MobileMoney\Objects\AccessToken as TokenObject;
+use Dadapas\MobileMoney\Objects\AccessToken;
 use Dadapas\MobileMoney\Exceptions\HttpRequestException;
 use Dadapas\MobileMoney\Utils\Helpers;
 
@@ -111,10 +111,10 @@ class Token
 		return $tokenResponse;
   	}
 
-  	protected function cached(TokenObject $tokenObject = null)
+  	protected function cached(AccessToken $tokenObject = null)
   	{
   		if ($tokenObject == null)
-  			$tokenObject = new TokenObject();
+  			$tokenObject = new AccessToken();
 
   		$tokenArray = $this->getAccessToken();
 
@@ -173,10 +173,10 @@ class Token
 		];
   	}
 
-	protected function cachedTest(TokenObject $tokenObject = null)
+	protected function cachedTest(AccessToken $tokenObject = null)
   	{
   		if ($tokenObject == null)
-  			$tokenObject = new TokenObject();
+  			$tokenObject = new AccessToken();
 
   		$tokenArray = $this->acessForTest();
 
