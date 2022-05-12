@@ -13,14 +13,14 @@ This package facilitate these features for you:
 The suggested installation method is via [composer](https://getcomposer.org/):
 
 ```sh
-composer require dadapas/mvola-php
+composer require dadapas/mvola-php=^2.0
 ```
 
 To get started
 
 ```php
 require_once __DIR__ . "/vendor/autoload.php";
-use MVolaphp\Telma as MVola;
+use Dadapas\MobileMoney\Telma as MVola;
 
 define('CREDENTIALS',[
 	// Customer id
@@ -43,19 +43,19 @@ try {
 	$mvola = new MVola(CREDENTIALS, $cache);
 
 	// ...
-} catch (MVolaphp\Exception $e) {
+} catch (Dadapas\MobileMoney\Exception $e) {
 
 	echo $e->getMessage().PHP_EOL;
 
-	var_dump($e->getData());
+	print_r($e->getData());
 }
 
 ```
 
 Sending money to merchent like
 ```php
-use MVolaphp\Money;
-use MVolaphp\Objects\{Phone, PayIn, KeyValue};
+use Dadapas\MobileMoney\Money;
+use Dadapas\MobileMoney\Objects\{Phone, PayIn, KeyValue};
 ...
 
 $payDetails = new PayIn();

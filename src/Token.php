@@ -1,11 +1,21 @@
 <?php
 
-namespace MVolaphp;
+namespace Dadapas\MobileMoney;
 
-use MVolaphp\Cache\Cache;
-use MVolaphp\Objects\Token as TokenObject;
-use MVolaphp\Exceptions\HttpRequestException;
-use MVolaphp\Utils\Helpers;
+/**
+ * This file is part of the dadapas/mvola-php library
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @copyright Copyright (c) TOVOHERY Z. Pascal <tovoherypascal@gmail.com>
+ * @license http://opensource.org/licenses/MIT MIT
+ */
+
+use Dadapas\MobileMoney\Cache\Cache;
+use Dadapas\MobileMoney\Objects\AccessToken as TokenObject;
+use Dadapas\MobileMoney\Exceptions\HttpRequestException;
+use Dadapas\MobileMoney\Utils\Helpers;
 
 class Token
 {
@@ -156,7 +166,7 @@ class Token
 	protected function acessForTest()
   	{
   		return [
-			"access_token" => \MVolaphp\Utils\Helpers::correlationID(),
+			"access_token" => \Dadapas\MobileMoney\Utils\Helpers::correlationID(),
 			"scope"		   => "EXT_INT_MVOLA_SCOPE",
 			"token_type"   => "Bearer",
 			"expires_in"   => 10 // Alive for 10 seconds

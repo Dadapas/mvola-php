@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace MVolaphp\Tests\Auth;
+namespace Dadapas\MobileMoney\Tests\Auth;
 
 use PHPUnit\Framework\TestCase;
-use MVolaphp\{Token, Telma as MVola};
-use MVolaphp\Objects\Token as TokeObject;
-use MVolaphp\Cache\Cache;
+use Dadapas\MobileMoney\{Token, Telma as MVola};
+use Dadapas\MobileMoney\Objects\Token as TokeObject;
+use Dadapas\MobileMoney\Cache\Cache;
 
 final class TokenTest extends TestCase
 {

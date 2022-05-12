@@ -1,11 +1,21 @@
 <?php
 
-namespace MVolaphp;
+namespace Dadapas\MobileMoney;
 
-use MVolaphp\Cache\Cache;
-use MVolaphp\Exceptions\{InvalidArgumentException, HttpRequestException};
-use MVolaphp\Objects\{PayIn, Phone, KeyValue};
-use MVolaphp\Utils\Helpers;
+/**
+ * This file is part of the dadapas/mvola-php library
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * @copyright Copyright (c) TOVOHERY Z. Pascal <tovoherypascal@gmail.com>
+ * @license http://opensource.org/licenses/MIT MIT
+ */
+
+use Dadapas\MobileMoney\Cache\Cache;
+use Dadapas\MobileMoney\Exceptions\{InvalidArgumentException, HttpRequestException};
+use Dadapas\MobileMoney\Objects\{PayIn, Phone, KeyValue};
+use Dadapas\MobileMoney\Utils\Helpers;
 
 /**
  * Mvola Class

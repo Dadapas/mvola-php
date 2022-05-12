@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace MVolaphp\Tests\Cache;
+namespace Dadapas\MobileMoney\Tests\Cache;
 
 use PHPUnit\Framework\TestCase;
-use MVolaphp\Utils\Helpers;
-use MVolaphp\Objects\{Phone, Token, PayIn, KeyValue};
-use MVolaphp\Money;
+use Dadapas\MobileMoney\Utils\Helpers;
+use Dadapas\MobileMoney\Objects\{Phone, Token, PayIn, KeyValue};
+use Dadapas\MobileMoney\Money;
 
 final class ObjectsTest extends TestCase
 {
