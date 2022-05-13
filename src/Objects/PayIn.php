@@ -55,7 +55,13 @@ class PayIn extends Objects
 			$this->requestingOrganisationTransactionReference == null ||
 			$this->metadata == null
 		)
-			throw new InvalidArgumentException("Some required parameters are missing.");
+			throw new InvalidArgumentException("Some required parameters are missing.", [
+				'error'	=> 'invalid arguments',
+				'error_description'	=> [
+					'message'	=> 'The list of arguments elements are not allowed to be null.',
+					'args'		=> 'amount, descriptionText, debitParty, metadata, originalTransactionReference, requestingOrganisationTransactionReference, requestDate'
+				]
+			]);
 	}
 
 	/**
@@ -68,8 +74,8 @@ class PayIn extends Objects
 		if ( !($this->amount instanceof Money))
 			throw new InvalidArgumentException("Amount must be money");
 
-		if ( !($this->metadata instanceof KeyValue && $this->metadata->keysExist('partnerName', 'fc', 'amountFc')) )
-			throw new InvalidArgumentException("metadata must be keyvalue and partnerName, fc and amountFc");
+		if ( !($this->metadata instanceof KeyValue && $this->metadata->keysExist('partnerName') ) )
+			throw new InvalidArgumentException("metadata must be keyvalue and partnerName key as company name");
 
 		if ( !($this->debitParty instanceof KeyValue && $this->debitParty->keysExist('msisdn')) )
 			throw new InvalidArgumentException("debitParty must be keyvalue and have msisdn");
