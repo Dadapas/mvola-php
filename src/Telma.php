@@ -271,10 +271,6 @@ class Telma implements IPay
 
 		$lavabe = $payment->requestingOrganisationTransactionReference;
 
-		/*if ($payment->metadata->partnerName)
-			$this->headers['partnerName'] = $payment->metadata->partnerName;*/
-
-
 		$symbol = Money::symbol($amount->getDevise());
 
 
