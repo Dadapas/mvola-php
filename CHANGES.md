@@ -1,3 +1,14 @@
+1.1.2 / 2022-05-13
+========================
+
+  * add data errors for unfiled request
+  * only partnerName is required for metadata payin
+
+1.1.1 / 2022-05-12
+========================
+
+  * add ramsey/uuid package to get uuid
+
 1.1.0 / 2022-05-11
 ========================
 
