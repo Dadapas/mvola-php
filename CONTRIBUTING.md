@@ -12,6 +12,12 @@ To install the project and run the tests, you need to clone it first:
 $ git clone git://github.com/dadapas/mvola-php.git
 ```
 
+Set up a branch for dev
+
+```sh
+$ git checkout -b dev/hotfix
+```
+
 You will then need to run a composer installation:
 
 ```sh

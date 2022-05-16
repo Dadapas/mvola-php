@@ -12,6 +12,13 @@ namespace Dadapas\MobileMoney\Objects;
  * @license http://opensource.org/licenses/MIT MIT
  */
 
+use DateTime;
+use function microtime;
+use function floor;
+use function preg_replace;
+use function substr;
+use function date;
+
 class DateTime
 {
 	/**
@@ -22,20 +29,20 @@ class DateTime
 
 	public function __construct($strtime = "now")
 	{
-		$this->datetime = new \DateTime($strtime);
+		$this->datetime = new DateTime($strtime);
 	}
 
 	public function currentWithMill()
 	{
-		$milliseconds = \microtime(true);
+		$milliseconds = microtime(true);
     	
-    	$timestamp = \floor($milliseconds);
+    	$timestamp = floor($milliseconds);
 
-		$uuuu = \preg_replace("/\d+\./", "", "$milliseconds");
+		$uuuu = preg_replace("/\d+\./", "", "$milliseconds");
 
-		$u = \substr($uuuu, 0, 3);
+		$u = substr($uuuu, 0, 3);
 
-		return \date("Y-m-d\TH:i:s", $timestamp). ".{$u}Z";
+		return date("Y-m-d\TH:i:s", $timestamp). ".{$u}Z";
 	}
 
 	public function __toString()
