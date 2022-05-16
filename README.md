@@ -81,8 +81,8 @@ $payDetails->descriptionText = "Test payement";
 
 $meta = new KeyValue();
 $meta->add('partnerName', "Company name");
-$meta->add('fc', 'USD');
-$meta->add('amountFc', 1);
+// $meta->add('fc', 'USD');
+// $meta->add('amountFc', 1);
 
 // Add metadata information
 $payDetails->metadata = $meta;
