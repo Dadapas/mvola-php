@@ -28,7 +28,7 @@ To get started
 require_once __DIR__ . "/vendor/autoload.php";
 use MVolaphp\Telma as MVola;
 
-define('CREDENTIALS',[
+$credentials = array(
 	// Customer id
 	'client_id'		=> '<customer_id>',
 	// Customer secret
@@ -41,10 +41,10 @@ define('CREDENTIALS',[
 	'partner_name'		=> "company_name",
 	// Set the lang
 	'lang'				=> 'MG'
-]);
+);
 
 // Path to cache that is enable to read and write
-$cache = '/path/to/cache';
+$cache = __DIR__.'/cache';
 
 try {
 
