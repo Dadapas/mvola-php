@@ -2,6 +2,11 @@
 ========================
 
   * change namespace to Dadapas\MobileMoney
+  
+1.1.3 / 2022-06-20
+========================
+
+  * Fixed class `DateTime` colision
 
 1.1.2 / 2022-05-13
 ========================

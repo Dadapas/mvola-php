@@ -1,7 +1,8 @@
 {
     "name": "dadapas/mvola-php",
+    "description": "A simple class wrapper for MVola mobile money for Madagascar.",
     "type": "library",
-    "version": "2.0.x-dev",
+    "version": "2.0.alpha1",
     "autoload": {
         "psr-4": {
             "Dadapas\\MobileMoney\\": "src/"
@@ -13,7 +14,7 @@
         }
     },
     "keywords": [
-        "mvola", 
+        "mvola",
         "php-sdk",
         "mobile-money",
         "library",
@@ -30,7 +31,7 @@
         "issues": "https://github.com/dadapas/mvola-php/issues"
     },
     "require": {
-        "php": ">=7.1 || >=8.0",
+        "php": ">=7.1",
         "ext-curl": "*",
         "ramsey/uuid": "^4.2"
     },
@@ -42,5 +43,10 @@
         "psr/log": "Required for using the Log middleware"
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "test": [
+            "./vendor/bin/phpunit ."
+        ]
+    }
 }
