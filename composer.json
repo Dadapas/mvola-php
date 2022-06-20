@@ -2,7 +2,7 @@
     "name": "dadapas/mvola-php",
     "description": "A simple class wrapper for MVola mobile money for Madagascar.",
     "type": "library",
-    "version": "1.1.3",
+    "version": "1.2.0",
     "autoload": {
         "psr-4": {
             "MVolaphp\\": "src/"
