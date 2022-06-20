@@ -39,6 +39,8 @@ define('CREDENTIALS',[
 	'production'	  	=> false,
 	// company_name
 	'partner_name'		=> "company_name",
+	// Set the lang
+	'lang'				=> 'MG'
 ]);
 
 // Path to cache that is enable to read and write
@@ -67,7 +69,7 @@ use MVolaphp\Objects\{Phone, PayIn, KeyValue};
 $payDetails = new PayIn();
 
 // Amount of 1000 ar or arivo ariary
-$money = new Money('MGA', 1000);
+$money = new Money('MGA', 5000);
 
 $payDetails->amount = $money;
 
