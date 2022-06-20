@@ -188,64 +188,40 @@ class Telma implements IPay
 	public function setUpLangue($lang = "MG")
 	{
 		if ($lang == "MG" || $lang == "FR") {
-			$this->headers['UserLanguage']  = $lang;
+			$this->lang = $lang;
 			return;
 		}
-
-		$this->headers['UserLanguage'] = "MG";
 	}
 
 	protected function setUpHeaders()
 	{
 		$token = $this->token->get();
 
+		$this->headers['Accept'] = "application/json";
 		$this->headers['Authorization'] = 'Bearer '.$token;
 		$this->headers['Content-Type'] = 'application/json';
+		$this->headers['UserLanguage'] = $this->lang;
 
 		$this->headers['Version'] = "1.0";
 		$this->headers['X-CorrelationID'] = Helpers::uuid();
 		$this->headers['UserAccountIdentifier'] = "msisdn;". $this->merchant_number->getValue();
 		$this->headers['partnerName'] = $this->partner_name;
 		$this->headers['Cache-Control'] = "no-cache";
+		$this->headers['Strict-Transport-Security'] = "max-age=31536000; includeSubDomains; preload";
+		$this->headers['X-XSS-Protection'] = "0";
+		$this->headers['X-Content-Type-Options'] = "nosniff";
+		$this->headers['X-Frame-Options'] = "sameorigin";
+		$this->headers['Referrer-Policy'] = "same-origin";
+
 
 		$headers = [];
 		foreach($this->headers as $key => $value)
 		{
 			$headers[] = "{$key}: {$value}";
 		}
-		$this->setOption(CURLINFO_HEADER_OUT, true);
+
 		$this->setOption(CURLOPT_HTTPHEADER, $headers);
 	}
-
-	/**
-	 * Get one transaction by ref
-	 * @return array
-	*/ 
-	public function transaction($transID)
-	{
-		$this->initRequest();
-
-		$this->setUpUri("/{$transID}");
-
-		$this->setUpHeaders();
-
-		return $this->run();
-	}
-
-	/**
-	 * Get status by correllation
-	*/
-	public function status($correlationID)
-	{
-		$this->initRequest();
-
-		$this->setUpUri("/status/{$correlationID}");
-
-		$this->setUpHeaders();
-
-		return $this->run();
-	}
-
 
 	/**
 	 * Sending money to merchent
