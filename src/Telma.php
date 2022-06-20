@@ -135,26 +135,30 @@ class Telma implements IPay
 	protected function run()
 	{
 
-		$result = \curl_exec($this->curl);
+		$result = curl_exec($this->curl);
 
-		if (\curl_error($this->curl))
+		if (curl_error($this->curl))
 		{
 			$data = [
 				'error'	=> 'curl error',
-				'error_description'	=> \curl_error($this->curl)
+				'error_description'	=> curl_error($this->curl)
 			];
 			throw new HttpRequestException('request error', $data);
 		}
 
-		$code = \curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
+		$code = curl_getinfo($this->curl, CURLINFO_HTTP_CODE);
 
-		\curl_close($this->curl);
+		$_url = curl_getinfo($this->curl, CURLINFO_EFFECTIVE_URL);
 
-		$dataResponse = \json_decode($result, true);
+		curl_close($this->curl);
 
-		if ($code > 200)
+
+		$dataResponse = json_decode($result, true);
+
+		if ($code >= 300)
 		{
-			throw new HttpRequestException("server request error.", $dataResponse);
+			$dataResponse['effective_url'] = $_url;
+			throw new HttpRequestException("Server request error.", $dataResponse);
 		}
 
 		if ($dataResponse == null) return [];
