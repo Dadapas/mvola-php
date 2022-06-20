@@ -86,6 +86,13 @@ class Telma implements IPay
 		
 		$this->partner_name = $options['partner_name'];
 
+		if ( array_key_exists('lang', $options))
+		{
+			$this->lang = $options['lang'];
+		} else {
+			$this->lang = "FR";
+		}
+
 		if (
 			isset($options['production']) &&
 			$options['production']
@@ -128,6 +135,8 @@ class Telma implements IPay
 	protected function setUpUri($uri)
 	{
 		$url = $this->merchentUrl();
+		if ("/" === $uri)
+			$uri = "";
 
 		$this->setOption(CURLOPT_URL, $url.$uri);
 	}
@@ -173,7 +182,7 @@ class Telma implements IPay
 
 	public function setCallbackUrl($url)
 	{
-		if ( ! Helpers::isUrl() )
+		if ( ! Helpers::isUrl($url) )
 		{
 			$data = [
 				'error'	=> 'bad url',
