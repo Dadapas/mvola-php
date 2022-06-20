@@ -285,24 +285,53 @@ class Telma implements IPay
 			'requestingOrganisationTransactionReference'=> $lavabe,
 			'requestDate'       =>  $payment->requestDate,
 			'originalTransactionReference' => $payment->originalTransactionReference,
-			'debitParty'	=> (string) $payment->debitParty,
 			'creditParty'	=> (string) $credited,
+			'debitParty'	=> (string) $payment->debitParty,
 			'metadata'		=> (string) $payment->metadata
 		];
+
+		$encodeData = json_encode($postData);
 
 		$this->initRequest();
 
 		$this->setUpUri("/");
 		
-		$this->setOption(CURLOPT_CUSTOMREQUEST, "POST");
+		$this->setOption(CURLOPT_POST, 1);
 
-		$this->setOption(CURLOPT_POSTFIELDS, \http_build_query($postData));
+		$this->headers['Content-Length'] = strlen($encodeData);
 
-		$this->setOption(CURLOPT_MAXREDIRS, 10);
+		$this->setOption(CURLOPT_POSTFIELDS, $encodeData);
 
-		$this->setOption(CURLOPT_TIMEOUT, 30);
+		$this->setUpHeaders();
 
 		$this->setOption(CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+
+		return $this->run();
+	}
+
+	/**
+	 * Get status by correllation
+	*/
+	public function status($correlationID)
+	{
+		$this->initRequest();
+
+		$this->setUpUri("/status/{$correlationID}");
+
+		$this->setUpHeaders();
+
+		return $this->run();
+	}
+
+	/**
+	 * Get one transaction by ref
+	 * @return array
+	*/ 
+	public function transaction($transID)
+	{
+		$this->initRequest();
+
+		$this->setUpUri("/{$transID}");
 
 		$this->setUpHeaders();
 
@@ -312,6 +341,6 @@ class Telma implements IPay
 
 	public function __descruct()
 	{
-		\curl_close($this->curl);
+		curl_close($this->curl);
 	}
 }
