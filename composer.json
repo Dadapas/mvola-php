@@ -14,7 +14,7 @@
         }
     },
     "keywords": [
-        "mvola", 
+        "mvola",
         "php-sdk",
         "mobile-money",
         "library",
@@ -43,5 +43,10 @@
         "psr/log": "Required for using the Log middleware"
     },
     "minimum-stability": "stable",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "scripts": {
+        "test": [
+            "./vendor/bin/phpunit ."
+        ]
+    }
 }

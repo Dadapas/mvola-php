@@ -16,12 +16,12 @@ class Helpers
 
 	public static function alpha()
 	{
-		return \random_int(0, 34);
+		return random_int(0, 34);
 	}
 
 	public static function size()
 	{
-		return \random_int(4, 12);
+		return random_int(4, 12);
 	}
 
 	public static function one($size = 0)
@@ -59,16 +59,16 @@ class Helpers
 	private static function uuidNative()
 	{
 		// Generate 16 bytes (128 bits) of random data or use the data passed into the function.
-	    $data = $data ?? \random_bytes(16);
-	    \assert(strlen($data) == 16);
+	    $data = $data ?? random_bytes(16);
+	    assert(strlen($data) == 16);
 
 	    // Set version to 0100
-	    $data[6] = \chr(\ord($data[6]) & 0x0f | 0x40);
+	    $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
 	    // Set bits 6-7 to 10
-	    $data[8] = \chr(\ord($data[8]) & 0x3f | 0x80);
+	    $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
 
 	    // Output the 36 character UUID.
-	    return \vsprintf('%s%s-%s-%s-%s-%s%s%s', \str_split(\bin2hex($data), 4));
+	    return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 	}
 
 	public static function uuid()
@@ -101,7 +101,7 @@ class Helpers
 	public static function transRef()
 	{
 		$str = "";
-		for($i = 0; $i < 25; $i++)
+		for($i = 0; $i < 35; $i++)
 		{
 			$str .= self::$alphabet[self::alpha()];
 		}
@@ -110,11 +110,11 @@ class Helpers
 
 	public static function removeExtraChar($str)
 	{
-		return \preg_replace('/,|-|_|\./', '', $str);
+		return preg_replace('/,|-|_|\./', '', $str);
 	}
 
 	public static function isUrl($url)
 	{
-		return 1 === \preg_match('/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/', $url);
+		return 1 === preg_match('/(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/', $url);
 	}
 }

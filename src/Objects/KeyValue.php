@@ -40,19 +40,16 @@ class KeyValue extends Objects
 
 	public function __toString()
 	{
-		$str = "";
-		$iterator = 0;
-		$end = ",";
+		$arr = [];
 
 		foreach($this->values as $key => $value)
 		{
-			if ($iterator === count($this->values) - 1)
-				$end = "";
-
-			$str .= "{\"key\": \"$key\", \"value\": \"$value\"}". $end;
-
-			$iterator++;
+			$arr[] = [
+				"key"	=> "$key",
+				"value" => "$value"
+			];
 		}
-		return "[$str]";
+		
+		return json_encode($arr);
 	}
 }
