@@ -95,6 +95,9 @@ $meta->add('partnerName', "Company name");
 // Add metadata information
 $payDetails->metadata = $meta;
 
+// Put callback url
+$mvola->setCallbackUrl("https://example.com/mycallback")
+
 // Make a payement 	
 $response = $mvola->payIn($payDetails);
 
