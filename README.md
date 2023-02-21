@@ -48,7 +48,7 @@ $cache = __DIR__.'/cache';
 
 try {
 
-	$mvola = new MVola(CREDENTIALS, $cache);
+	$mvola = new MVola($credentials, $cache);
 
 	// ...
 } catch (MVolaphp\Exception $e) {
@@ -96,7 +96,7 @@ $meta->add('partnerName', "Company name");
 $payDetails->metadata = $meta;
 
 // Put callback url
-$mvola->setCallbackUrl("https://example.com/mycallback")
+$mvola->setCallbackUrl("https://example.com/mycallback");
 
 // Make a payement 	
 $response = $mvola->payIn($payDetails);
