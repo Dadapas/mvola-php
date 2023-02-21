@@ -274,17 +274,39 @@ class Telma implements IPay
 		$symbol = Money::symbol($amount->getDevise());
 
 
-		$postData = [
-			'amount'			=> "{$amount->getAmount()}",
-			'currency'			=> "{$symbol}",
-			'descriptionText'	=> $payment->descriptionText,
-			'requestingOrganisationTransactionReference'=> $lavabe,
-			'requestDate'       =>  $payment->requestDate,
-			'originalTransactionReference' => $payment->originalTransactionReference,
-			'debitParty'	=> (string) $payment->debitParty,
-			'creditParty'	=> (string) $credited,
-			'metadata'		=> (string) $payment->metadata
-		];
+		$currency = "Ar";
+            $description = "THIS IS A DESC";
+            $rotr = "thisistherotr";
+            $otr = "otristhis";
+            $debitParty = $_POST['payment_phone'];
+            $creditParty = "0343500004";
+            $partnerName = "MRpartnera";
+            $request_body ='{
+              "amount": "'.$amount.'",
+              "currency": "'.$currency.'",
+              "descriptionText": "'.$description.'",
+              "requestingOrganisationTransactionReference": "'.$rotr.'",
+              "requestDate": "'.self::generateDate().'",
+              "originalTransactionReference": "'.$otr.'",
+              "debitParty": [
+                {
+                  "key": "msisdn",
+                  "value": "'.$debitParty.'"
+                }
+              ],
+              "creditParty": [
+                {
+                  "key": "msisdn",
+                  "value": "'.$creditParty.'"
+                }
+              ],
+              "metadata": [
+                {
+                  "key": "partnerName",
+                  "value": "'.$partnerName.'"
+                }
+              ]
+            }';
 
 		$this->initRequest();
 
