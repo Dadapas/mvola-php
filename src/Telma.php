@@ -73,7 +73,7 @@ class Telma implements IPay
 		if ( ! ( array_key_exists('client_id', $options) &&
 				 array_key_exists('client_secret', $options) &&
 				 array_key_exists('merchant_number', $options) &&
-				 array_key_exists('partner_name', $options)
+				 array_key_exists('partner_name', $options) 
 			   )
 		)
 			throw new InvalidArgumentException('Customer client_id, client_secret, merchant_number and partner_name are required.');
@@ -83,6 +83,8 @@ class Telma implements IPay
 		$this->client_secret = $options['client_secret'];
 		
 		$this->merchant_number = new Phone($options['merchant_number']);
+
+		$this->uuid_generate = $options['uuid'];
 		
 		$this->partner_name = $options['partner_name'];
 
@@ -163,7 +165,6 @@ class Telma implements IPay
 
 
 		$dataResponse = json_decode($result, true);
-
 		if ($code >= 300)
 		{
 			$dataResponse['effective_url'] = $_url;
@@ -262,39 +263,38 @@ class Telma implements IPay
 
 		$symbol = Money::symbol($amount->getDevise());
 
+    $otr = Helpers::ref();
+    $partnerName = $this->partner_name;
 
-    	$otr = Helpers::ref();
-    	$partnerName = $this->partner_name;
-
-    	$encodeDebitData = json_decode($payment->debitParty, true);
-    	$encodeCreditData = json_decode($payment->creditParty, true);
+    $encodeDebitData = json_decode($payment->debitParty, true);
+    $encodeCreditData = json_decode($payment->creditParty, true);
 
 		$encodeData ='{
-          "amount": "'.$amount->getAmount().'",
-          "currency": "'.$symbol.'",
-          "descriptionText": "'.$payment->descriptionText.'",
-          "requestingOrganisationTransactionReference": "'.$lavabe.'",
-          "requestDate": "'. $payment->requestDate .'",
-          "originalTransactionReference": "'.$otr.'",
-          "debitParty": [
-            {
-              "key": "msisdn",
-              "value": "'.$encodeDebitData[0]['value'].'"
-            }
-          ],
-          "creditParty": [
-            {
-              "key": "msisdn",
-              "value": "'.$encodeDebitData[0]['value'].'"
-            }
-          ],
-          "metadata": [
-            {
-              "key": "partnerName",
-              "value": "'.$partnerName.'"
-            }
-          ]
-        }';
+      "amount": "'.$amount->getAmount().'",
+      "currency": "'.$symbol.'",
+      "descriptionText": "'.$payment->descriptionText.'",
+      "requestingOrganisationTransactionReference": "'.$lavabe.'",
+      "requestDate": "'. $payment->requestDate .'",
+      "originalTransactionReference": "'.$otr.'",
+      "debitParty": [
+        {
+          "key": "msisdn",
+          "value": "'.$encodeDebitData[0]['value'].'"
+        }
+      ],
+      "creditParty": [
+        {
+          "key": "msisdn",
+          "value": "'.$encodeDebitData[0]['value'].'"
+        }
+      ],
+      "metadata": [
+        {
+          "key": "partnerName",
+          "value": "'.$partnerName.'"
+        }
+      ]
+    }';
 
 		$this->initRequest();
 
@@ -302,7 +302,7 @@ class Telma implements IPay
 		
 		$this->setOption(CURLOPT_POST, 1);
 
-		$this->headers['Content-Length'] = strlen($encodeData);
+		//$this->headers['Content-Length'] = strlen($encodeData);
 
 		$this->setOption(CURLOPT_POSTFIELDS, $encodeData);
 
