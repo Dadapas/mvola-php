@@ -165,7 +165,6 @@ class Telma implements IPay
 
 
 		$dataResponse = json_decode($result, true);
-
 		if ($code >= 300)
 		{
 			$dataResponse['effective_url'] = $_url;
@@ -264,47 +263,38 @@ class Telma implements IPay
 
 		$symbol = Money::symbol($amount->getDevise());
 
-		function generateDate()
-        {
-            $fraction = floor(microtime(true) * 1000);
-            $showdate = date('Y-m-d').'T'.date('H:i:s').'.'.substr($fraction,-3,3).'Z';
-            return $showdate;
-        }
+    $otr = Helpers::ref();
+    $partnerName = $this->partner_name;
 
-        $rotr = "thisistherotr";
-    	$otr = "otristhis";
-    	$partnerName = "MRpartnera";
-
-    	$encodeDebitData = json_decode($payment->debitParty, true);
-
-    	$encodeCreditData = json_decode($payment->creditParty, true);
+    $encodeDebitData = json_decode($payment->debitParty, true);
+    $encodeCreditData = json_decode($payment->creditParty, true);
 
 		$encodeData ='{
-          "amount": "'.$amount->getAmount().'",
-          "currency": "'.$symbol.'",
-          "descriptionText": "'.$payment->descriptionText.'",
-          "requestingOrganisationTransactionReference": "'.$lavabe.'",
-          "requestDate": "'. generateDate().'",
-          "originalTransactionReference": "'.$otr.'",
-          "debitParty": [
-            {
-              "key": "msisdn",
-              "value": "'.$encodeDebitData[0]['value'].'"
-            }
-          ],
-          "creditParty": [
-            {
-              "key": "msisdn",
-              "value": "'.$encodeDebitData[0]['value'].'"
-            }
-          ],
-          "metadata": [
-            {
-              "key": "partnerName",
-              "value": "'.$partnerName.'"
-            }
-          ]
-        }';
+      "amount": "'.$amount->getAmount().'",
+      "currency": "'.$symbol.'",
+      "descriptionText": "'.$payment->descriptionText.'",
+      "requestingOrganisationTransactionReference": "'.$lavabe.'",
+      "requestDate": "'. $payment->requestDate .'",
+      "originalTransactionReference": "'.$otr.'",
+      "debitParty": [
+        {
+          "key": "msisdn",
+          "value": "'.$encodeDebitData[0]['value'].'"
+        }
+      ],
+      "creditParty": [
+        {
+          "key": "msisdn",
+          "value": "'.$encodeDebitData[0]['value'].'"
+        }
+      ],
+      "metadata": [
+        {
+          "key": "partnerName",
+          "value": "'.$partnerName.'"
+        }
+      ]
+    }';
 
 		$this->initRequest();
 

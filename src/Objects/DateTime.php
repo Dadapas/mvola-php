@@ -2,7 +2,7 @@
 
 namespace MVolaphp\Objects;
 
-use DateTime;
+use DateTime as NativeDateTime;
 use function microtime;
 use function floor;
 use function preg_replace;
@@ -19,7 +19,7 @@ class DateTime
 
 	public function __construct($strtime = "now")
 	{
-		$this->datetime = new DateTime($strtime);
+		$this->datetime = new NativeDateTime($strtime);
 	}
 
 	public function currentWithMill()

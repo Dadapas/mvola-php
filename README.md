@@ -1,5 +1,11 @@
 ## MVOLA PHP
 
+<span style="margin:auto; text-align: center;width: 500px;display:block">
+<img width="350" src="https://i.ibb.co/MgKHQR7/mail.png" alt="mvola api" />
+	
+[![Latest Stable Version](http://poser.pugx.org/dadapas/mvola-php/v)](https://packagist.org/packages/dadapas/mvola-php) [![Total Downloads](http://poser.pugx.org/dadapas/mvola-php/downloads)](https://packagist.org/packages/dadapas/mvola-php) [![Latest Unstable Version](http://poser.pugx.org/dadapas/mvola-php/v/unstable)](https://packagist.org/packages/dadapas/mvola-php) [![License](http://poser.pugx.org/dadapas/mvola-php/license)](https://packagist.org/packages/dadapas/mvola-php) [![PHP Version Require](http://poser.pugx.org/dadapas/mvola-php/require/php)](https://packagist.org/packages/dadapas/mvola-php)
+</span>
+
 PHP class wrap up Madagascar mobile money request as mvola.
 
 This package facilitate these features for you:
@@ -22,7 +28,7 @@ To get started
 require_once __DIR__ . "/vendor/autoload.php";
 use MVolaphp\Telma as MVola;
 
-define('CREDENTIALS',[
+$credentials = array(
 	// Customer id
 	'client_id'		=> '<customer_id>',
 	// Customer secret
@@ -33,14 +39,16 @@ define('CREDENTIALS',[
 	'production'	  	=> false,
 	// company_name
 	'partner_name'		=> "company_name",
-]);
+	// Set the lang
+	'lang'				=> 'MG'
+);
 
 // Path to cache that is enable to read and write
-$cache = '/path/to/cache';
+$cache = __DIR__.'/cache';
 
 try {
 
-	$mvola = new MVola(CREDENTIALS, $cache);
+	$mvola = new MVola($credentials, $cache);
 
 	// ...
 } catch (MVolaphp\Exception $e) {
@@ -61,7 +69,7 @@ use MVolaphp\Objects\{Phone, PayIn, KeyValue};
 $payDetails = new PayIn();
 
 // Amount of 1000 ar or arivo ariary
-$money = new Money('MGA', 1000);
+$money = new Money('MGA', 5000);
 
 $payDetails->amount = $money;
 
@@ -81,11 +89,14 @@ $payDetails->descriptionText = "Test payement";
 
 $meta = new KeyValue();
 $meta->add('partnerName', "Company name");
-$meta->add('fc', 'USD');
-$meta->add('amountFc', 1);
+// $meta->add('fc', 'USD');
+// $meta->add('amountFc', 1);
 
 // Add metadata information
 $payDetails->metadata = $meta;
+
+// Put callback url
+$mvola->setCallbackUrl("https://example.com/mycallback");
 
 // Make a payement 	
 $response = $mvola->payIn($payDetails);
