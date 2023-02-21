@@ -263,19 +263,38 @@ class Telma implements IPay
 		$symbol = Money::symbol($amount->getDevise());
 
 
-		$postData = [
-			'amount'			=> "{$amount->getAmount()}",
-			'currency'			=> "{$symbol}",
-			'descriptionText'	=> $payment->descriptionText,
-			'requestingOrganisationTransactionReference'=> $lavabe,
-			'requestDate'       =>  $payment->requestDate,
-			'originalTransactionReference' => $payment->originalTransactionReference,
-			'creditParty'	=> (string) $credited,
-			'debitParty'	=> (string) $payment->debitParty,
-			'metadata'		=> (string) $payment->metadata
-		];
+    	$otr = Helpers::ref();
+    	$partnerName = $this->partner_name;
 
-		$encodeData = json_encode($postData);
+    	$encodeDebitData = json_decode($payment->debitParty, true);
+    	$encodeCreditData = json_decode($payment->creditParty, true);
+
+		$encodeData ='{
+          "amount": "'.$amount->getAmount().'",
+          "currency": "'.$symbol.'",
+          "descriptionText": "'.$payment->descriptionText.'",
+          "requestingOrganisationTransactionReference": "'.$lavabe.'",
+          "requestDate": "'. $payment->requestDate .'",
+          "originalTransactionReference": "'.$otr.'",
+          "debitParty": [
+            {
+              "key": "msisdn",
+              "value": "'.$encodeDebitData[0]['value'].'"
+            }
+          ],
+          "creditParty": [
+            {
+              "key": "msisdn",
+              "value": "'.$encodeDebitData[0]['value'].'"
+            }
+          ],
+          "metadata": [
+            {
+              "key": "partnerName",
+              "value": "'.$partnerName.'"
+            }
+          ]
+        }';
 
 		$this->initRequest();
 
