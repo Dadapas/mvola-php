@@ -84,7 +84,7 @@ class Telma implements IPay
 		
 		$this->merchant_number = new Phone($options['merchant_number']);
 
-		$this->uuid_generate = $options['uuid'];
+		//$this->uuid_generate = $options['uuid'];
 		
 		$this->partner_name = $options['partner_name'];
 
@@ -269,7 +269,7 @@ class Telma implements IPay
     $encodeDebitData = json_decode($payment->debitParty, true);
     $encodeCreditData = json_decode($payment->creditParty, true);
 
-		$encodeData ='{
+	$encodeData ='{
       "amount": "'.$amount->getAmount().'",
       "currency": "'.$symbol.'",
       "descriptionText": "'.$payment->descriptionText.'",
@@ -285,7 +285,7 @@ class Telma implements IPay
       "creditParty": [
         {
           "key": "msisdn",
-          "value": "'.$encodeDebitData[0]['value'].'"
+          "value": "'.$encodeCreditData[0]['value'].'"
         }
       ],
       "metadata": [
